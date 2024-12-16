@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8eqpm5pn1jj7"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0fer2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yp807"]
+radius = 2.46565
+height = 6.09536
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmbwh"]
+albedo_color = Color(1, 0.72549, 0.996078, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8jm45"]
+material = SubResource("StandardMaterial3D_vmbwh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvax0"]
+size = Vector3(3.87161, 2.9841, 3.94287)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7uhda"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["player"]]
+collision_mask = 3
+script = ExtResource("1_0fer2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.31569, 0, 2.42218, -1.16933)
+shape = SubResource("CapsuleShape3D_yp807")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403194, 0)
+mesh = SubResource("CapsuleMesh_8jm45")
+
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
+transform = Transform3D(1.55623, 0, 0, 0, 1.55623, 0, 0, 0, 1.55623, 0, 1.49876, -1.32789)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0513457, 0.563064, -2.06384)
+shape = SubResource("BoxShape3D_hvax0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
+transform = Transform3D(2.48867, 0, 0, 0, 1.89299, 0, 0, 0, 1.77119, 0, -0.0232801, 0.0232801)
+visible = false
+mesh = SubResource("BoxMesh_7uhda")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.547474, 4.65187, 0)
+light_energy = 12.151
+light_indirect_energy = 4.879
+spot_range = 557.193
+spot_attenuation = 1.23114
+spot_angle = 29.32
+spot_angle_attenuation = 1.1487
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

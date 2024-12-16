@@ -1,0 +1,160 @@
+[gd_scene load_steps=15 format=3 uid="uid://hafb61mtm4wh"]
+
+[ext_resource type="Material" uid="uid://doe82upagmf0j" path="res://button_green.tres" id="1_3orfb"]
+[ext_resource type="Script" path="res://switch.gd" id="1_eoxu2"]
+[ext_resource type="Material" uid="uid://v1yaq72nfk22" path="res://button_red.tres" id="2_rjhfi"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_b8iqt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_omro7"]
+size = Vector3(10.0701, 9.07843, 4.07275)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ub0d5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_653oq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gp777"]
+noise = SubResource("FastNoiseLite_653oq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_563e7"]
+albedo_color = Color(0.329158, 0.329158, 0.329158, 1)
+metallic = 0.8
+roughness_texture = SubResource("NoiseTexture2D_gp777")
+
+[sub_resource type="Animation" id="Animation_tndcn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0407104)]
+}
+
+[sub_resource type="Animation" id="Animation_6301c"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_rjhfi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0407104)]
+}
+
+[sub_resource type="Animation" id="Animation_12nxn"]
+resource_name = "on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_rjhfi"), ExtResource("1_3orfb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0407104), Vector3(0, 0, -0.43277)]
+}
+
+[sub_resource type="Animation" id="Animation_cii3m"]
+resource_name = "reset"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:material_override")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_3orfb"), ExtResource("2_rjhfi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("button:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.43277), Vector3(0, 0, 0.0407104)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ip6kl"]
+_data = {
+"RESET": SubResource("Animation_tndcn"),
+"off": SubResource("Animation_6301c"),
+"on": SubResource("Animation_12nxn"),
+"reset": SubResource("Animation_cii3m")
+}
+
+[node name="switch" type="Node3D"]
+script = ExtResource("1_eoxu2")
+
+[node name="button" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0407104)
+material_override = ExtResource("1_3orfb")
+mesh = SubResource("PrismMesh_b8iqt")
+surface_material_override/0 = ExtResource("1_3orfb")
+
+[node name="switch_area" type="Area3D" parent="." groups=["switch"]]
+
+[node name="switch_collision" type="CollisionShape3D" parent="switch_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0139694, 0.515411, 1.06958)
+shape = SubResource("BoxShape3D_omro7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.51457, 0, 0, 0, 2.85405, 0, 0, 0, 0.681874, 0, 0, -0.635071)
+mesh = SubResource("BoxMesh_ub0d5")
+surface_material_override/0 = SubResource("StandardMaterial3D_563e7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ip6kl")
+}
+autoplay = "off"
+
+[connection signal="area_entered" from="switch_area" to="." method="_on_switch_area_area_entered"]
+[connection signal="area_exited" from="switch_area" to="." method="_on_switch_area_area_exited"]
+[connection signal="body_entered" from="switch_area" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_exited" from="switch_area" to="." method="_on_switch_area_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

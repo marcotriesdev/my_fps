@@ -1,0 +1,14 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://bmjpoggfab02s"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1txoj"]
+noise_type = 2
+frequency = 0.0112
+offset = Vector3(782.61, 0, 0)
+fractal_octaves = 1
+
+[resource]
+width = 1
+height = 546
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_1txoj")

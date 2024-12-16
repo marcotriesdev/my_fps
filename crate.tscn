@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfep2phijbrqt"]
+
+[ext_resource type="PackedScene" uid="uid://bswjs6squbpj" path="res://models/crate.blend" id="1_7xykg"]
+[ext_resource type="Material" uid="uid://bwea8q0wmvgxd" path="res://metal azulon2.tres" id="2_25mup"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdocw"]
+size = Vector3(6.16409, 5.5481, 5.1597)
+
+[node name="crate" instance=ExtResource("1_7xykg")]
+collision_layer = 2
+collision_mask = 7
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_25mup")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0326223, 2.88269, -0.0387115)
+shape = SubResource("BoxShape3D_tdocw")

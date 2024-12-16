@@ -1,0 +1,459 @@
+[gd_scene load_steps=18 format=3 uid="uid://tjmfgeddyw3"]
+
+[ext_resource type="Script" path="res://chaingun.gd" id="1_odsdi"]
+[ext_resource type="Material" uid="uid://k375grjj4il1" path="res://metal.tres" id="2_yyb17"]
+[ext_resource type="Script" path="res://Label.gd" id="3_71sob"]
+[ext_resource type="Material" uid="uid://bwea8q0wmvgxd" path="res://metal azulon2.tres" id="3_d7h50"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3j82e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gswv4"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 0.368627)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85fbv"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.0980392, 0.145098, 0.592157)
+
+[sub_resource type="BoxMesh" id="BoxMesh_58bho"]
+material = ExtResource("2_yyb17")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5jfrg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m6cmf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvqbu"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.192157, 0.627451, 0, 0.662745)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hmnto"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_148lb"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2fock"]
+
+[sub_resource type="Animation" id="Animation_hj4lx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shooting_light:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shooter:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2jldd"]
+resource_name = "light"
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shooting_light:light_energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.17, 0.26, 0.36, 0.44, 0.5, 0.52, 0.58, 0.64, 0.69, 0.78, 0.88, 0.96, 1.02),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 12.145, 1.735, 11.754, 1.344, 11.561, 5.546, 0.0, 0.0, 12.145, 1.735, 11.754, 1.344, 11.561, 5.546, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.11, 0.14, 0.15, 0.19, 0.21, 0.23, 0.25, 0.27, 0.29, 0.31, 0.32, 0.35, 0.36, 0.4, 0.47, 0.49, 0.51, 0.53, 0.55, 0.57, 0.58, 0.61, 0.62, 0.66, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.83, 0.86, 0.87, 0.9, 0.91, 0.92, 0.94, 0.96, 0.98, 1, 1.01, 1.04, 1.05, 1.09),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}, {
+"args": [],
+"method": &"shoot_bullet"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shooter:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.47, 0.53, 0.59, 0.65, 0.71, 0.77, 0.83, 0.89, 0.92, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4e6m"]
+_data = {
+"RESET": SubResource("Animation_hj4lx"),
+"light": SubResource("Animation_2jldd")
+}
+
+[node name="chaingun" type="Node3D"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+script = ExtResource("1_odsdi")
+
+[node name="casing_shooter" type="Node3D" parent="."]
+transform = Transform3D(0.0809639, -0.0377489, 0.0697055, 0.554559, 0.0344688, -0.000603981, -0.179288, 0.0895692, 0.0296098, 0.436022, -0.200307, -0.44886)
+
+[node name="shooter" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.3, 0, 4.52987e-08, 0, 0.3, 0, -4.52987e-08, 0, -0.3, -3.38497e-07, 0.212581, -3.81181)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="shooter"]
+transform = Transform3D(2.30181, 0, 0, 0, 2, 0, 0, 0, 4.35256, 0, 0, 0.821228)
+mesh = SubResource("SphereMesh_3j82e")
+surface_material_override/0 = SubResource("StandardMaterial3D_gswv4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="shooter"]
+transform = Transform3D(1.37951, 0, 0, 0, 1.19864, 0, 0, 0, 2.60857, 0, 0, 0.203683)
+mesh = SubResource("SphereMesh_3j82e")
+surface_material_override/0 = SubResource("StandardMaterial3D_85fbv")
+
+[node name="caja" type="Node3D" parent="."]
+transform = Transform3D(-0.3, 0, 4.52987e-08, 0, 0.3, 0, -4.52987e-08, 0, -0.3, -1.48091e-06, 0, -2.00177)
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(3.56964, 0, 0, 0, 2.25337, 0, 5.68434e-14, 0, 2.28128, 0.728072, 0, -4.65225)
+mesh = SubResource("BoxMesh_58bho")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_d7h50")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.30882, -0.260408, 0, 1.07263, 0.317749, 0, 0, 0, 1.50759, -1.39854, 0.756191, -3.79411)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.30882, -0.260408, 0, 1.07263, 0.317749, 0, 0, 0, 1.50759, -1.39854, 0.756191, -5.6342)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(2.52895, -0.0300291, 0, 0.0976828, 0.777435, 0, 0, 0, 1.50759, 0.588339, 1.30742, -3.79411)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(2.52895, -0.0300291, 0, 0.0976828, 0.777435, 0, 0, 0, 1.50759, 0.588339, 1.30742, -5.6342)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.6144, 0.125483, -0.031834, 0.0266695, 0.0887091, 0.219365, 0.776877, -0.263807, 0.0586226, -0.640067, 2.82371, -4.51029)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(-0.26988, 0.12583, -0.232352, 1.84853, 0.114896, -0.00201327, 0.597625, -0.298564, -0.0986993, -1.40196, 1.9768, -5.17638)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(2.48634, -0.00230234, 1.76328e-10, 0.0134959, 0.424161, 1.06261e-08, -5.48539e-10, -4.2488e-09, 1.06072, 0.588339, 1.79193, -5.36149)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.17795, 0.298715, 2.7963e-09, -1.23042, 0.285978, 4.48961e-08, 3.4231e-08, -9.01095e-09, 1.51755, 2.78639, 0.609493, -3.78803)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.17795, 0.298715, 2.7963e-09, -1.23042, 0.285978, 4.48961e-08, 3.4231e-08, -9.01095e-09, 1.51755, 2.78639, 0.609493, -5.64028)
+mesh = SubResource("BoxMesh_5jfrg")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="screen" type="MeshInstance3D" parent="caja"]
+transform = Transform3D(1.48833, -0.159145, -0.190891, 0.0332653, 0.943911, -0.157063, 0.710154, 0.289318, 0.407423, -0.515067, 2.28571, -4.76792)
+mesh = SubResource("BoxMesh_m6cmf")
+surface_material_override/0 = SubResource("StandardMaterial3D_gvqbu")
+
+[node name="Sprite3D" type="Sprite3D" parent="caja/screen"]
+transform = Transform3D(1.022, -0.0523764, 0.00554673, 0.0384423, 1.39097, 0.00536063, -0.00679071, -0.00828332, 0.865125, -0.000493169, 0.0441265, -0.58622)
+flip_h = true
+pixel_size = 0.0135
+texture = SubResource("ViewportTexture_hmnto")
+
+[node name="tubo_giratorio" type="Node3D" parent="."]
+transform = Transform3D(-0.3, 0, 4.52987e-08, 0, 0.3, 0, -4.52987e-08, 0, -0.3, -1.48091e-06, 0, -2.00177)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(1, 0, 0, 0, -2.18557e-07, -1, 0, 5, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_d7h50")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, -0.812691, 0, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, 0.823098, 0, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, -0.00938463, 0.790859, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, -0.00938463, -0.790859, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, 0.552542, -0.55152, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, 0.552542, 0.55152, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, -0.592123, 0.55152, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-07, -0.5, 0, 5, -2.18557e-08, -0.592123, -0.60355, 0)
+mesh = SubResource("CylinderMesh_148lb")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_yyb17")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(2.33265, 0, 0, 0, -1.17753e-08, -2.40763, 0, 0.269387, -1.05241e-07, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2fock")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_d7h50")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(2.33265, 0, 0, 0, -1.17753e-08, -2.40763, 0, 0.269387, -1.05241e-07, 0, 0, -3.43152)
+mesh = SubResource("CylinderMesh_2fock")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_d7h50")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="tubo_giratorio"]
+transform = Transform3D(2.36158, 0, 0, 0, -1.19213e-08, -2.43749, 0, 0.272728, -1.06546e-07, 0, 0, 3.56889)
+mesh = SubResource("CylinderMesh_2fock")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_d7h50")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_u4e6m")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.668
+one_shot = true
+
+[node name="shooting_light" type="OmniLight3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -2.96528e-07, 0, -3.89857)
+light_color = Color(1, 1, 0.588235, 1)
+light_energy = 0.0
+omni_range = 102.932
+omni_attenuation = 0.965935
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(68, 32)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
+text = "AMMO"
+script = ExtResource("3_71sob")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmxtloxjdpq26"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1ovem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6lak"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgjaq"]
+albedo_color = Color(0.212299, 0.344456, 0.420286, 1)
+
+[node name="lampmesh" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.27949, 0, 0, 0, 1.24719, 0, 0, 0, 3.27949, 0, -0.600812, 0)
+mesh = SubResource("CylinderMesh_1ovem")
+surface_material_override/0 = SubResource("StandardMaterial3D_s6lak")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.3312, 0, 0, 0, 2.02746, 0, 0, 0, 5.3312, 0, 1.12796, 0)
+mesh = SubResource("CylinderMesh_1ovem")
+surface_material_override/0 = SubResource("StandardMaterial3D_bgjaq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.83939, 0)
+light_indirect_energy = 6.06
+light_volumetric_fog_energy = 5.04
+omni_range = 28.566
