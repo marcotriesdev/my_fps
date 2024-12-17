@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://r47llla0ybgq"]
+
+[ext_resource type="Script" path="res://wall_light.gd" id="1_lwge4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_16j0f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukpih"]
+shading_mode = 0
+grow_amount = 0.36
+
+[node name="wall_light" type="Node3D"]
+script = ExtResource("1_lwge4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_16j0f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.7, 0, 0.23452, 0)
+mesh = SubResource("BoxMesh_16j0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_ukpih")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55911, 0)
+omni_range = 18.921

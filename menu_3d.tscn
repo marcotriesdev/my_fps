@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://1ixgnbdyn8rg"]
+
+[ext_resource type="Script" path="res://menu_3d.gd" id="1_b1bu3"]
+[ext_resource type="Texture2D" uid="uid://dmtlqifyq8eyl" path="res://2d graphics/game_logo_prototype.png" id="1_ksa6j"]
+[ext_resource type="FontFile" uid="uid://dj1v23wikk0u" path="res://fonts/Origicide.ttf" id="2_lx32q"]
+
+[node name="menu3D" type="Node3D"]
+script = ExtResource("1_b1bu3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Node2D" type="Node2D" parent="Camera3D"]
+
+[node name="game_logo" type="Sprite2D" parent="Camera3D/Node2D"]
+position = Vector2(604, 231)
+scale = Vector2(0.550293, 0.550293)
+texture = ExtResource("1_ksa6j")
+
+[node name="start_label2" type="Label" parent="Camera3D/Node2D"]
+unique_name_in_owner = true
+offset_left = 400.0
+offset_top = 479.0
+offset_right = 834.0
+offset_bottom = 659.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lx32q")
+theme_override_font_sizes/font_size = 146
+text = "START"
+horizontal_alignment = 1
+
+[node name="start_label" type="Label" parent="Camera3D/Node2D"]
+unique_name_in_owner = true
+offset_left = 422.0
+offset_top = 481.0
+offset_right = 813.0
+offset_bottom = 661.0
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_lx32q")
+theme_override_font_sizes/font_size = 131
+text = "START"
+horizontal_alignment = 1
+
+[node name="exit_label2" type="Label" parent="Camera3D/Node2D"]
+unique_name_in_owner = true
+offset_left = 422.0
+offset_top = 661.0
+offset_right = 813.0
+offset_bottom = 841.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lx32q")
+theme_override_font_sizes/font_size = 146
+text = "Exit"
+horizontal_alignment = 1
+
+[node name="exit_label" type="Label" parent="Camera3D/Node2D"]
+unique_name_in_owner = true
+offset_left = 422.0
+offset_top = 661.0
+offset_right = 813.0
+offset_bottom = 841.0
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("2_lx32q")
+theme_override_font_sizes/font_size = 131
+text = "Exit"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Camera3D/Node2D/start_label2" to="." method="_on_start_label_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Node2D/start_label2" to="." method="_on_start_label_mouse_exited"]
+[connection signal="mouse_entered" from="Camera3D/Node2D/start_label" to="." method="_on_start_label_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Node2D/start_label" to="." method="_on_start_label_mouse_exited"]
+[connection signal="mouse_entered" from="Camera3D/Node2D/exit_label2" to="." method="_on_exit_label_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Node2D/exit_label2" to="." method="_on_exit_label_mouse_exited"]
+[connection signal="mouse_entered" from="Camera3D/Node2D/exit_label" to="." method="_on_exit_label_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Node2D/exit_label" to="." method="_on_exit_label_mouse_exited"]

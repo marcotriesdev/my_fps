@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://b786s0aee4vd7"]
+
+[ext_resource type="Script" path="res://battery.gd" id="1_2v8aw"]
+[ext_resource type="Material" uid="uid://eoav6x7mpygn" path="res://battery_material.tres" id="1_m8ivc"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6aftj"]
+
+[sub_resource type="Animation" id="Animation_g448e"]
+resource_name = "glow"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:emission_energy_multiplier")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 16.0, 0.0, 16.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:surface_material_override/0:emission_texture:noise:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1000, -50, 0), Vector3(1000, -50, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.284, 1.956, 0.284, 1.956]
+}
+
+[sub_resource type="Animation" id="Animation_j7mdu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:surface_material_override/0:emission_texture:noise:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1000, -50, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.284]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53tph"]
+_data = {
+"RESET": SubResource("Animation_j7mdu"),
+"glow": SubResource("Animation_g448e")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tiq5r"]
+size = Vector3(2.69482, 2.29773, 2.52002)
+
+[node name="Battery" type="Node3D"]
+script = ExtResource("1_2v8aw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_6aftj")
+surface_material_override/0 = ExtResource("1_m8ivc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.927302, -0.374315, 1.63618e-08, -1.99256e-15, -4.37114e-08, -1, 0.374315, 0.927302, -4.05336e-08, 1.23261, 0, 0.61123)
+mesh = SubResource("CylinderMesh_6aftj")
+surface_material_override/0 = ExtResource("1_m8ivc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.959304, 0.282375, -1.2343e-08, -1.99256e-15, -4.37114e-08, -1, -0.282375, 0.959304, -4.19325e-08, 0.593144, 0.998255, 0.61123)
+mesh = SubResource("CylinderMesh_6aftj")
+surface_material_override/0 = ExtResource("1_m8ivc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_53tph")
+}
+autoplay = "glow"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.611451, -0.472184, 0.36852)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.284
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="battery_area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="battery_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.786612, 0.648865, 0.456734)
+shape = SubResource("BoxShape3D_tiq5r")
+
+[connection signal="body_entered" from="battery_area" to="." method="_on_battery_area_body_entered"]

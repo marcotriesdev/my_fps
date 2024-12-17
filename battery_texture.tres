@@ -1,0 +1,8 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://2lnxbs41rs2y"]
+
+[ext_resource type="FastNoiseLite" uid="uid://brdyfwjrqf2ml" path="res://battery_noise.tres" id="1_k6ymr"]
+
+[resource]
+height = 902
+seamless = true
+noise = ExtResource("1_k6ymr")

@@ -26,10 +26,12 @@ var camera: Camera3D
 
 var activate: bool = false
 
+var flashlight = false
+
 func _ready():
 	# Captura el mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$SpotLight3D.visible = false
+	%SpotLight3D.visible = false
 	
 	# Obtén la referencia al nodo Camera3D
 	camera = get_parent().get_node("Camera3D2")
@@ -46,6 +48,7 @@ func _process(delta):
 	
 	handle_movement(delta)
 	_shoot(delta)
+	flashlight_input(delta)
 
 func _shoot(delta):
 	if Input.is_action_pressed("clic"):
@@ -72,6 +75,19 @@ func handle_mouse_motion(event: InputEventMouseMotion):
 	# Aplica la rotación vertical al Camera3D (gira la cámara hacia arriba/abajo)
 	camera.rotation.x = rotation_vertical
 	camera.rotation.y = rotation_horizontal
+
+func flashlight_input(delta):
+	
+	if Input.is_action_just_pressed("flashlight") :
+		print("turn on light")
+		%SpotLight3D.visible = not %SpotLight3D.visible
+	
+	if %SpotLight3D.visible and Global.flashlight_battery > 0:
+		Global.flashlight_battery -= 0.05
+		
+	if Global.flashlight_battery <= 0:
+		%SpotLight3D.visible = false
+
 
 
 func handle_movement(delta):
@@ -109,9 +125,9 @@ func handle_movement(delta):
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jumpForce
-	
-	if Input.is_action_just_pressed("flashlight"):
-		$SpotLight3D.visible = not $SpotLight3D.visible
+
+
+
 
 	
 	if not is_on_floor():	

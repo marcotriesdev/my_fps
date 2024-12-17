@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxt5aowvaqnwq"]
+[gd_scene load_steps=17 format=3 uid="uid://bxt5aowvaqnwq"]
 
 [ext_resource type="PackedScene" uid="uid://hbo1ynakrach" path="res://models/map1.blend" id="1_nka8q"]
 [ext_resource type="PackedScene" uid="uid://bfep2phijbrqt" path="res://crate.tscn" id="2_le2ss"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://b506e7xk887lq" path="res://tubo_1.tscn" id="3_f4871"]
 [ext_resource type="PackedScene" uid="uid://dl3amnhukc33d" path="res://puerta.tscn" id="4_j4dpc"]
 [ext_resource type="PackedScene" uid="uid://hafb61mtm4wh" path="res://switch.tscn" id="6_ba506"]
+[ext_resource type="PackedScene" uid="uid://r47llla0ybgq" path="res://wall_light.tscn" id="7_st8dq"]
+[ext_resource type="PackedScene" uid="uid://kiv3dpw1pbij" path="res://fps_player.tscn" id="8_g0dym"]
+[ext_resource type="PackedScene" uid="uid://b786s0aee4vd7" path="res://battery.tscn" id="9_3356c"]
+
+[sub_resource type="Environment" id="Environment_yp37j"]
+ambient_light_source = 1
+reflected_light_source = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6klvb"]
 resource_name = "Material"
@@ -61,28 +68,48 @@ roughness = 0.75
 
 [node name="map1" instance=ExtResource("1_nka8q")]
 
-[node name="mesh" type="StaticBody3D" parent="." index="0"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_yp37j")
+
+[node name="grey_map" type="StaticBody3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0597, -29.0901, -24.035)
 collision_layer = 2
 collision_mask = 7
 
-[node name="Cube" type="MeshInstance3D" parent="mesh" index="0"]
+[node name="Cube" type="MeshInstance3D" parent="grey_map" index="0"]
 transform = Transform3D(5.51, 0, 0, 0, 5.51, 0, 0, 0, 5.51, 30.0739, 32.4469, 74.2873)
 mesh = SubResource("ArrayMesh_irexq")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_o3f6l")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grey_map" index="1"]
 transform = Transform3D(5.51, 0, 0, 0, 5.51, 0, 0, 0, 5.51, 30.0739, 32.4593, 74.2873)
 visible = false
 shape = SubResource("ConcavePolygonShape3D_vft73")
 
-[node name="Cube" parent="." index="1"]
+[node name="Cube" parent="." index="2"]
 transform = Transform3D(5.51, 0, 0, 0, 5.51, 0, 0, 0, 5.51, -10, 0, 50)
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_isaql")
 
-[node name="Lights" type="Node3D" parent="." index="2"]
+[node name="Switches" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0597, -29.0901, -24.035)
+
+[node name="switch" parent="Switches" index="0" instance=ExtResource("6_ba506")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 117.503, 37.8204, -156.269)
+path_array = [NodePath("../../Doors/puerta"), NodePath("../../Doors/puerta2")]
+light_paths = [NodePath("../../Wall_lights/wall_light8")]
+
+[node name="switch2" parent="Switches" index="1" instance=ExtResource("6_ba506")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 140.615, 37.6768, -424.27)
+path_array = [NodePath("../../Doors/puerta3")]
+light_paths = [NodePath("../../Wall_lights/wall_light7")]
+
+[node name="switch3" parent="Switches" index="2" instance=ExtResource("6_ba506")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 166.664, 38.4533, -575.139)
+path_array = [NodePath("../../Doors/puerta4")]
+
+[node name="Lights" type="Node3D" parent="." index="4"]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lights" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.016196, 0.999869, 0, -0.999869, 0.016196, -8.4221, 21.0109, 32.4697)
@@ -212,10 +239,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.1882, 24.8947, 9.56459)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.0881, 24.8947, -57.3829)
 
 [node name="lampmesh6" parent="Lights" index="17" instance=ExtResource("2_qjjaa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6405, 25.6501, -98.7957)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6405, 28.4354, -98.7957)
 
 [node name="lampmesh7" parent="Lights" index="18" instance=ExtResource("2_qjjaa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6405, 25.6501, -171.988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6405, 32.0465, -132.714)
 
 [node name="lampmesh9" parent="Lights" index="19" instance=ExtResource("2_qjjaa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6405, 38.3109, -314.667)
@@ -244,116 +271,144 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.2968, 24.8947, 9.74695)
 [node name="lampmesh4" parent="Lights" index="27" instance=ExtResource("2_qjjaa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.0234, 24.8947, -57.8655)
 
-[node name="scenery" type="Node3D" parent="." index="3"]
+[node name="Scenery" type="Node3D" parent="." index="5"]
 
-[node name="crate" parent="scenery" index="0" instance=ExtResource("2_le2ss")]
+[node name="crate" parent="Scenery" index="0" instance=ExtResource("2_le2ss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1955, 5.16279, 0)
 
-[node name="crate2" parent="scenery" index="1" instance=ExtResource("2_le2ss")]
+[node name="crate2" parent="Scenery" index="1" instance=ExtResource("2_le2ss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1955, 5.16279, 6.52055)
 
-[node name="crate3" parent="scenery" index="2" instance=ExtResource("2_le2ss")]
+[node name="crate3" parent="Scenery" index="2" instance=ExtResource("2_le2ss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1955, 12.2947, 3.92867)
 
-[node name="crate4" parent="scenery" index="3" instance=ExtResource("2_le2ss")]
+[node name="crate4" parent="Scenery" index="3" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -78.5321, 5.16279, 7.29056)
 
-[node name="crate5" parent="scenery" index="4" instance=ExtResource("2_le2ss")]
+[node name="crate5" parent="Scenery" index="4" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -80.0257, 5.16279, 13.6377)
 
-[node name="crate6" parent="scenery" index="5" instance=ExtResource("2_le2ss")]
+[node name="crate6" parent="Scenery" index="5" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -79.432, 12.2947, 11.1148)
 
-[node name="crate7" parent="scenery" index="6" instance=ExtResource("2_le2ss")]
+[node name="crate7" parent="Scenery" index="6" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -154.632, 5.16279, -165.149)
 
-[node name="crate8" parent="scenery" index="7" instance=ExtResource("2_le2ss")]
+[node name="crate8" parent="Scenery" index="7" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -156.126, 5.16279, -158.802)
 
-[node name="crate9" parent="scenery" index="8" instance=ExtResource("2_le2ss")]
+[node name="crate9" parent="Scenery" index="8" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -155.532, 12.2947, -161.325)
 
-[node name="crate10" parent="scenery" index="9" instance=ExtResource("2_le2ss")]
+[node name="crate10" parent="Scenery" index="9" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -154.632, 18.8789, -165.665)
 
-[node name="crate11" parent="scenery" index="10" instance=ExtResource("2_le2ss")]
+[node name="crate11" parent="Scenery" index="10" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -156.126, 18.8789, -159.318)
 
-[node name="crate12" parent="scenery" index="11" instance=ExtResource("2_le2ss")]
+[node name="crate12" parent="Scenery" index="11" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -155.532, 26.0108, -161.841)
 
-[node name="crate13" parent="scenery" index="12" instance=ExtResource("2_le2ss")]
+[node name="crate13" parent="Scenery" index="12" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -154.632, 5.23362, -181.952)
 
-[node name="crate14" parent="scenery" index="13" instance=ExtResource("2_le2ss")]
+[node name="crate14" parent="Scenery" index="13" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -156.126, 5.23362, -175.605)
 
-[node name="crate15" parent="scenery" index="14" instance=ExtResource("2_le2ss")]
+[node name="crate15" parent="Scenery" index="14" instance=ExtResource("2_le2ss")]
 transform = Transform3D(0.973411, 0, -0.229065, 0, 1, 0, 0.229065, 0, 0.973411, -155.532, 12.3655, -178.128)
 
-[node name="tubo1" parent="scenery" index="15" instance=ExtResource("3_f4871")]
+[node name="tubo1" parent="Scenery" index="15" instance=ExtResource("3_f4871")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -152.037, 20.3773, -198.519)
 
-[node name="tubo2" parent="scenery" index="16" instance=ExtResource("3_f4871")]
+[node name="tubo2" parent="Scenery" index="16" instance=ExtResource("3_f4871")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.513, 20.3773, -198.519)
 
-[node name="tubo3" parent="scenery" index="17" instance=ExtResource("3_f4871")]
+[node name="tubo3" parent="Scenery" index="17" instance=ExtResource("3_f4871")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.202, 20.3773, -198.519)
 
-[node name="tubo4" parent="scenery" index="18" instance=ExtResource("3_f4871")]
+[node name="tubo4" parent="Scenery" index="18" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.71551, -6.25519e-08, -2.73423e-15, 0, -3.12759e-08, 0.71551, -6.25519e-08, 0.71551, 3.12759e-08, -43.5843, 18.0406, -65.5608)
 
-[node name="tubo5" parent="scenery" index="19" instance=ExtResource("3_f4871")]
+[node name="tubo5" parent="Scenery" index="19" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.71551, -2.54327e-07, -2.73423e-15, 0, -1.27163e-07, 0.71551, -6.25519e-08, 2.90916, 3.12759e-08, 33.794, 23.5627, -26.6121)
 
-[node name="tubo10" parent="scenery" index="20" instance=ExtResource("3_f4871")]
+[node name="tubo10" parent="Scenery" index="20" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.71551, -2.54327e-07, -2.73423e-15, 0, -1.27163e-07, 0.71551, -6.25519e-08, 2.90916, 3.12759e-08, 57.123, 39.1377, -106.81)
 
-[node name="tubo11" parent="scenery" index="21" instance=ExtResource("3_f4871")]
+[node name="tubo11" parent="Scenery" index="21" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.71551, -2.54327e-07, -2.73423e-15, 0, -1.27163e-07, 0.71551, -6.25519e-08, 2.90916, 3.12759e-08, 57.123, 42.7613, -259.967)
 
-[node name="tubo12" parent="scenery" index="22" instance=ExtResource("3_f4871")]
+[node name="tubo12" parent="Scenery" index="22" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.71551, -5.08654e-07, -6.25519e-08, 6.25519e-08, 1.27164e-07, -0.71551, 1.25104e-07, -2.90916, -3.12759e-08, 57.123, 42.7613, -362.682)
 
-[node name="tubo6" parent="scenery" index="23" instance=ExtResource("3_f4871")]
+[node name="tubo6" parent="Scenery" index="23" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.330986, -1.26312, -1.35796e-08, 0, -8.06765e-08, 0.453942, -0.310664, 1.34574, 1.44678e-08, -17.641, 21.2481, -1.47649)
 
-[node name="tubo7" parent="scenery" index="24" instance=ExtResource("3_f4871")]
+[node name="tubo7" parent="Scenery" index="24" instance=ExtResource("3_f4871")]
 transform = Transform3D(-0.330986, -1.26312, -1.35796e-08, 0, -8.06765e-08, 0.453942, -0.310664, 1.34574, 1.44678e-08, -24.1534, 21.2481, -6.27506)
 
-[node name="tubo8" parent="scenery" index="25" instance=ExtResource("3_f4871")]
+[node name="tubo8" parent="Scenery" index="25" instance=ExtResource("3_f4871")]
 transform = Transform3D(0.00487244, -1.84556, -1.98413e-08, -8.53646e-16, -8.06765e-08, 0.453942, -0.453916, -0.0198107, -2.12984e-10, 84.761, 32.4419, -92.6976)
 
-[node name="tubo9" parent="scenery" index="26" instance=ExtResource("3_f4871")]
+[node name="tubo9" parent="Scenery" index="26" instance=ExtResource("3_f4871")]
 transform = Transform3D(0.00487244, -1.84556, -1.98413e-08, -8.53646e-16, -8.06765e-08, 0.453942, -0.453916, -0.0198107, -2.12984e-10, 83.8893, 32.4419, -100.74)
 
-[node name="puertas" type="Node3D" parent="." index="4"]
+[node name="Doors" type="Node3D" parent="." index="6"]
 
-[node name="puerta" parent="puertas" index="0" instance=ExtResource("4_j4dpc")]
+[node name="puerta" parent="Doors" index="0" instance=ExtResource("4_j4dpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1768, 2.05569, -193.269)
 self_close = true
-switch_path = NodePath("../../switch")
+switch_path = NodePath("../../Switches/switch")
 
-[node name="puerta2" parent="puertas" index="1" instance=ExtResource("4_j4dpc")]
+[node name="puerta2" parent="Doors" index="1" instance=ExtResource("4_j4dpc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 98.6316, 2.05569, -134.521)
-switch_path = NodePath("../../switch")
+switch_path = NodePath("../../Switches/switch")
 
-[node name="puerta3" parent="puertas" index="2" instance=ExtResource("4_j4dpc")]
+[node name="puerta3" parent="Doors" index="2" instance=ExtResource("4_j4dpc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 112.516, 3.44562, -432.502)
-switch_path = NodePath("../../switch2")
+switch_path = NodePath("../../Switches/switch2")
 
-[node name="puerta4" parent="puertas" index="3" instance=ExtResource("4_j4dpc")]
+[node name="puerta4" parent="Doors" index="3" instance=ExtResource("4_j4dpc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 112.516, 3.44562, -590.974)
-switch_path = NodePath("../../switch3")
+switch_path = NodePath("../../Switches/switch3")
 
-[node name="switch" parent="." index="5" instance=ExtResource("6_ba506")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 77.4437, 8.73029, -180.304)
-path_array = [NodePath("../puertas/puerta"), NodePath("../puertas/puerta2")]
+[node name="Wall_lights" type="Node3D" parent="." index="7"]
 
-[node name="switch2" parent="." index="6" instance=ExtResource("6_ba506")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 100.555, 8.58672, -448.305)
-path_array = [NodePath("../puertas/puerta3")]
+[node name="wall_light" parent="Wall_lights" index="0" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.792023, -0.610491, 0, 0.610491, 0.792023, 0, 0, 0, 1, 39.2564, 3.3692, -34.7832)
+light_color = Color(0.819608, 0.984314, 0, 1)
 
-[node name="switch3" parent="." index="7" instance=ExtResource("6_ba506")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.604, 9.3632, -599.174)
-path_array = [NodePath("../puertas/puerta4")]
+[node name="wall_light2" parent="Wall_lights" index="1" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.792023, -0.610491, 0, 0.610491, 0.792023, 0, 0, 0, 1, 39.2564, 3.3692, -15.7688)
+light_color = Color(1, 1, 0, 1)
+
+[node name="wall_light3" parent="Wall_lights" index="2" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.727174, 0.686453, 0, -0.686453, 0.727174, 0, 0, 0, 1, 6.39582, 3.3692, -15.7688)
+light_color = Color(0.933706, 0.858254, 0, 1)
+
+[node name="wall_light4" parent="Wall_lights" index="3" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.727174, 0.686453, 0, -0.686453, 0.727174, 0, 0, 0, 1, 6.39582, 3.3692, -42.8956)
+light_color = Color(1, 1, 0, 1)
+
+[node name="wall_light5" parent="Wall_lights" index="4" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.792023, -0.610491, 0, 0.610491, 0.792023, 0, 0, 0, 1, 77.242, 3.3692, -81.6195)
+light_color = Color(0.819608, 0.984314, 0, 1)
+
+[node name="wall_light6" parent="Wall_lights" index="5" instance=ExtResource("7_st8dq")]
+transform = Transform3D(0.727174, 0.686453, 0, -0.686453, 0.727174, 0, 0, 0, 1, 6.67957, 3.3692, -66.6013)
+light_color = Color(1, 1, 0, 1)
+
+[node name="wall_light7" parent="Wall_lights" index="6" instance=ExtResource("7_st8dq")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 101.316, 26.569, -431.389)
+light_color = Color(1, 0, 0, 1)
+
+[node name="wall_light8" parent="Wall_lights" index="7" instance=ExtResource("7_st8dq")]
+transform = Transform3D(-4.37114e-08, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, 3.82137e-15, 4.37114e-08, 61.4023, 25.1839, -185.823)
+light_color = Color(1, 0, 0, 1)
+
+[node name="FPS_player" parent="." index="8" instance=ExtResource("8_g0dym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09996, 8.52685, 49.729)
+
+[node name="Battery" parent="." index="9" instance=ExtResource("9_3356c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.74782, 5.30631, 16.0229)

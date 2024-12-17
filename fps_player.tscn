@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://kiv3dpw1pbij"]
+
+[ext_resource type="PackedScene" uid="uid://b8eqpm5pn1jj7" path="res://player.tscn" id="1_0o4y6"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_viqnm"]
+[ext_resource type="PackedScene" uid="uid://tjmfgeddyw3" path="res://chaingun.tscn" id="3_chvaw"]
+
+[node name="FPS_player" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_0o4y6")]
+unique_name_in_owner = true
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31478, -1.22187)
+current = true
+fov = 69.153
+script = ExtResource("2_viqnm")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D2"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.547474, 3.33709, 1.22187)
+light_energy = 12.151
+light_indirect_energy = 4.879
+spot_range = 557.193
+spot_attenuation = 1.23114
+spot_angle = 29.32
+spot_angle_attenuation = 1.1487
+
+[node name="Node3D" type="Node3D" parent="Camera3D2/SpotLight3D"]
+
+[node name="gunpoint" type="Node3D" parent="Camera3D2"]
+unique_name_in_owner = true
+transform = Transform3D(0.999997, 0, -0.002426, 0, 1, 0, 0.002426, 0, 0.999997, 0.940212, -1.1458, -0.933651)
+
+[node name="dynamic_hud" type="Node3D" parent="Camera3D2"]
+
+[node name="Node2D" type="Node2D" parent="Camera3D2/dynamic_hud"]
+
+[node name="Label" type="RichTextLabel" parent="Camera3D2/dynamic_hud/Node2D"]
+offset_right = 603.0
+offset_bottom = 327.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "
+
+"
+
+[node name="chaingun" parent="." instance=ExtResource("3_chvaw")]
+unique_name_in_owner = true
+transform = Transform3D(0.3, 0, -1.90719e-08, 0, 0.3, 0, 1.90719e-08, 0, 0.3, 0, 0.775545, -2.06998)
