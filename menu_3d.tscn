@@ -1,14 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://1ixgnbdyn8rg"]
+[gd_scene load_steps=12 format=3 uid="uid://1ixgnbdyn8rg"]
 
 [ext_resource type="Script" path="res://menu_3d.gd" id="1_b1bu3"]
 [ext_resource type="Texture2D" uid="uid://dmtlqifyq8eyl" path="res://2d graphics/game_logo_prototype.png" id="1_ksa6j"]
 [ext_resource type="FontFile" uid="uid://dj1v23wikk0u" path="res://fonts/Origicide.ttf" id="2_lx32q"]
+[ext_resource type="AudioStream" uid="uid://bxalrr8f8j2vt" path="res://music/shadowrealm_1.mp3" id="4_jv5nm"]
+[ext_resource type="PackedScene" uid="uid://8tcowu1rnp21" path="res://wasp_mech.tscn" id="5_5dy7g"]
+
+[sub_resource type="Gradient" id="Gradient_yho2y"]
+offsets = PackedFloat32Array(0.153846, 1)
+colors = PackedColorArray(0.787702, 0.543464, 0.594234, 1, 0.997977, 0.0616276, 1.92523e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qm40q"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tmxl3"]
+seamless = true
+bump_strength = 30.5
+color_ramp = SubResource("Gradient_yho2y")
+noise = SubResource("FastNoiseLite_qm40q")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8twkm"]
+sky_top_color = Color(0.696581, 0.324678, 0.146436, 1)
+sky_horizon_color = Color(0.974196, 0.0671592, 0.0914673, 1)
+sky_curve = 0.321531
+sky_energy_multiplier = 2.45
+sky_cover = SubResource("NoiseTexture2D_tmxl3")
+sky_cover_modulate = Color(0.783546, 0.667225, 0.224122, 1)
+ground_bottom_color = Color(0.137947, 0.114357, 0.0869545, 1)
+ground_horizon_color = Color(0.876564, 0, 0.0582071, 1)
+ground_curve = 0.0527804
+sun_angle_max = 245.45
+sun_curve = 0.261165
+
+[sub_resource type="Sky" id="Sky_g5hua"]
+sky_material = SubResource("ProceduralSkyMaterial_8twkm")
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_1tfr0"]
+background_mode = 2
+sky = SubResource("Sky_g5hua")
+sky_rotation = Vector3(0, 2.25846, 0)
+ambient_light_source = 3
 
 [node name="menu3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.8759)
 script = ExtResource("1_b1bu3")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1tfr0")
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 76.1
 
 [node name="Node2D" type="Node2D" parent="Camera3D"]
 
@@ -37,6 +78,10 @@ offset_top = 481.0
 offset_right = 813.0
 offset_bottom = 661.0
 mouse_filter = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -60
+theme_override_constants/shadow_offset_y = 50
+theme_override_constants/shadow_outline_size = -30
 theme_override_fonts/font = ExtResource("2_lx32q")
 theme_override_font_sizes/font_size = 131
 text = "START"
@@ -66,6 +111,24 @@ theme_override_fonts/font = ExtResource("2_lx32q")
 theme_override_font_sizes/font_size = 131
 text = "Exit"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jv5nm")
+volume_db = -10.914
+pitch_scale = 0.95
+autoplay = true
+
+[node name="wasp_mech" parent="." instance=ExtResource("5_5dy7g")]
+transform = Transform3D(0.824966, -1.35257e-08, -0.565183, 1.23707e-08, 1, -5.87471e-09, 0.565183, -2.14529e-09, 0.824966, 17.097, 2.61284, -20.462)
+
+[node name="wasp_mech2" parent="." instance=ExtResource("5_5dy7g")]
+transform = Transform3D(0.724027, -1.35257e-08, 0.689771, 8.31322e-09, 1, 1.08829e-08, -0.689771, -2.14529e-09, 0.724027, -50.7507, 7.02016, -76.9623)
+
+[node name="wasp_mech3" parent="." instance=ExtResource("5_5dy7g")]
+transform = Transform3D(0.724027, -1.35257e-08, 0.689771, 8.31322e-09, 1, 1.08829e-08, -0.689771, -2.14529e-09, 0.724027, -68.2895, 26.5781, -85.7276)
+
+[node name="wasp_mech4" parent="." instance=ExtResource("5_5dy7g")]
+transform = Transform3D(0.724027, -1.35257e-08, 0.689771, 8.31322e-09, 1, 1.08829e-08, -0.689771, -2.14529e-09, 0.724027, -80.5109, -8.56271, -86.3002)
 
 [connection signal="mouse_entered" from="Camera3D/Node2D/start_label2" to="." method="_on_start_label_mouse_entered"]
 [connection signal="mouse_exited" from="Camera3D/Node2D/start_label2" to="." method="_on_start_label_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxt5aowvaqnwq"]
+[gd_scene load_steps=18 format=3 uid="uid://bxt5aowvaqnwq"]
 
 [ext_resource type="PackedScene" uid="uid://hbo1ynakrach" path="res://models/map1.blend" id="1_nka8q"]
 [ext_resource type="PackedScene" uid="uid://bfep2phijbrqt" path="res://crate.tscn" id="2_le2ss"]
@@ -13,6 +13,11 @@
 [sub_resource type="Environment" id="Environment_yp37j"]
 ambient_light_source = 1
 reflected_light_source = 1
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1ihwy"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 0.01
+dof_blur_far_transition = 540.83
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6klvb"]
 resource_name = "Material"
@@ -70,6 +75,7 @@ roughness = 0.75
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 environment = SubResource("Environment_yp37j")
+camera_attributes = SubResource("CameraAttributesPractical_1ihwy")
 
 [node name="grey_map" type="StaticBody3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.0597, -29.0901, -24.035)
