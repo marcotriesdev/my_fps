@@ -1,5 +1,6 @@
 extends Node
 
+#VERSION 4.3 PARA GITHUB
 var player_ammo = {"bullets": 1000}
 var flashlight_battery = 100
 
@@ -18,4 +19,3 @@ func _process(_delta):
 	if flashlight_battery > 100:
 		flashlight_battery = 100
 		
-

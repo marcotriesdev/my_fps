@@ -13,7 +13,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31478, -1.22187)
 current = true
-fov = 69.153
+fov = 69.2
 script = ExtResource("2_viqnm")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D2"]
@@ -30,7 +30,7 @@ spot_angle_attenuation = 1.1487
 
 [node name="gunpoint" type="Node3D" parent="Camera3D2"]
 unique_name_in_owner = true
-transform = Transform3D(0.999997, 0, -0.002426, 0, 1, 0, 0.002426, 0, 0.999997, 0.940212, -1.1458, -0.933651)
+transform = Transform3D(0.999997, 0, -0.002426, 0, 1, 0, 0.002426, 0, 0.999997, 0.706184, -0.855056, -0.680644)
 
 [node name="dynamic_hud" type="Node3D" parent="Camera3D2"]
 
@@ -47,4 +47,4 @@ text = "
 
 [node name="chaingun" parent="." instance=ExtResource("3_chvaw")]
 unique_name_in_owner = true
-transform = Transform3D(0.3, 0, -1.90719e-08, 0, 0.3, 0, 1.90719e-08, 0, 0.3, 0, 0.775545, -2.06998)
+transform = Transform3D(0.7, 0, -4.45011e-08, 0, 0.7, 0, 4.45011e-08, 0, 0.7, 0, 0.775545, -2.06998)

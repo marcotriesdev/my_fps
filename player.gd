@@ -148,6 +148,3 @@ func handle_movement(delta):
 	velocity.z = direction.z * move_speed * delta
 	
 	move_and_slide()
-
-
-
